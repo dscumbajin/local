@@ -1059,7 +1059,7 @@
       .navbar-default {
           background-color: none!important;
           /* border-color: #fff; */
-          border:none!important;
+          /* border:none!important; */
           border-radius:0px!important;
           margin-top:0px!important;
           box-shadow:1px 1px 1px #c2c2c2;

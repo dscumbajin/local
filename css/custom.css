@@ -7,7 +7,7 @@ http://work.smarchal.com/twbscolor/
 .navbar-default {
     background-color: #fff;
     border-color: #fff;
-    border-bottom: 2px solid #e11f28;
+    border-top: 5px solid #f13e3e !important;
 }
 
 .navbar-footer {

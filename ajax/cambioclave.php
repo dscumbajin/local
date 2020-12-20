@@ -1,9 +1,4 @@
 <?php
-	/*-------------------------
-	Autor: Jorge F prieto L
-	Web: bateriasecuador.com
-	Mail: info@bateriasecuador.com
-	---------------------------*/
 
 if (isset($_POST['nombre'])){$nombre=$_POST['nombre'];}
 if (isset($_POST['contrasena'])){$c1=$_POST['contrasena'];}

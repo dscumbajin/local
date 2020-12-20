@@ -12,7 +12,7 @@
 	
 	$active_clientes="active";
 
-	$title="Clientes | Baterias _ Pedidos";
+	$title="Usuarios | Baterias Ecuador";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,24 +33,24 @@
             <div class="panel-heading">
                 <div class="btn-group pull-right">
                     <button type='button' class="btn btn-info" data-toggle="modal" data-target="#nuevoCliente"><span
-                            class="glyphicon glyphicon-plus"></span> Nuevo Cliente</button>
+                            class="glyphicon glyphicon-plus"></span> Nuevo Usuario</button>
                 </div>
-                <h4><i class='glyphicon glyphicon-search'></i> Buscar Clientes</h4>
+                <h4><i class='glyphicon glyphicon-search'></i> Buscar Usuarios</h4>
             </div>
             <div class="panel-body">
 
 
 
                 <?php
-				include("modal/registro_clientes.php");
-				include("modal/editar_clientes.php");
+				include("modal/usuario/registro_clientes.php");
+				include("modal/usuario/editar_clientes.php");
 			?>
                 <form class="form-horizontal" role="form" id="datos_cotizacion">
 
                     <div class="form-group row">
-                        <label for="q" class="col-md-2 control-label">Cliente</label>
+                        <label for="q" class="col-md-2 control-label">Usuario</label>
                         <div class="col-md-5">
-                            <input type="text" class="form-control" id="q" placeholder="RUC o Nombre cliente"
+                            <input type="text" class="form-control" id="q" placeholder="Usuario o Nombre usuario"
                                 onkeyup='load(1);'>
                         </div>
                         <div class="col-md-3">
@@ -82,7 +82,7 @@
 		$('#facturacion').removeClass('activarnav');
 	}
     </script>
-    <script type="text/javascript" src="js/clientes.js"></script>
+    <script type="text/javascript" src="js/usuario/clientes.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 </body>

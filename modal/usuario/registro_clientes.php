@@ -9,15 +9,14 @@
 	            <div class="modal-header">
 	                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
 	                        aria-hidden="true">&times;</span></button>
-	                <h4 class="modal-title" id="myModalLabel"><i class='glyphicon glyphicon-edit'></i> Agregar nuevo
-	                    cliente</h4>
+	                <h4 class="modal-title" id="myModalLabel"><i class='glyphicon glyphicon-edit'></i> Agregar usuario</h4>
 	            </div>
 	            <div class="modal-body">
-	                <form class="form-horizontal" method="post" id="guardar_cliente" name="guardar_cliente">
+	                <form  class="form-horizontal" method="post" id="guardar_cliente" name="guardar_cliente">
 	                    <div id="resultados_ajax"></div>
 
 	                    <div class="form-group">
-	                        <label for="codigo" class="col-sm-3 control-label">RUC</label>
+	                        <label for="codigo" class="col-sm-3 control-label">Usuario</label>
 	                        <div class="col-sm-8">
 	                            <input type="text" class="form-control" id="codigo" name="codigo" required>
 	                        </div>
@@ -50,9 +49,6 @@
 	                            </select>
 	                        </div>
 	                    </div>
-
-
-						
 
 	            </div>
 	            <div class="modal-footer">

@@ -6,7 +6,7 @@
 		    var q = $("#q").val();
 		    $("#loader").fadeIn('slow');
 		    $.ajax({
-		        url: './ajax/buscar_clientes.php?action=ajax&page=' + page + '&q=' + q,
+		        url: './ajax/usuario/buscar_clientes.php?action=ajax&page=' + page + '&q=' + q,
 		        beforeSend: function(objeto) {
 		            $('#loader').html('<img src="./img/ajax-loader.gif"> Cargando...');
 		        },
@@ -23,7 +23,7 @@
 		    if (confirm("Realmente deseas eliminar el cliente")) {
 		        $.ajax({
 		            type: "GET",
-		            url: "./ajax/buscar_clientes.php",
+		            url: "./ajax/usuario/buscar_clientes.php",
 		            data: "id=" + id,
 		            "q": q,
 		            beforeSend: function(objeto) {
@@ -43,7 +43,7 @@
 		    var parametros = $(this).serialize();
 		    $.ajax({
 		        type: "POST",
-		        url: "ajax/nuevo_cliente.php",
+		        url: "ajax/usuario/nuevo_cliente.php",
 		        data: parametros,
 		        beforeSend: function(objeto) {
 		            $("#resultados_ajax").html("Mensaje: Cargando...");
@@ -63,7 +63,7 @@
 		    var parametros = $(this).serialize();
 		    $.ajax({
 		        type: "POST",
-		        url: "ajax/editar_cliente.php",
+		        url: "ajax/usuario/editar_cliente.php",
 		        data: parametros,
 		        beforeSend: function(objeto) {
 		            $("#resultados_ajax2").html("Mensaje: Cargando...");

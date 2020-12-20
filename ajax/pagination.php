@@ -61,4 +61,3 @@ function paginate($reload, $page, $tpages, $adjacents) {
 	$out.= "</ul>";
 	return $out;
 }
-?>

@@ -1,12 +1,6 @@
 <?php
-	/*-------------------------
-	Autor: Jorge F prieto L
-	Web: bateriasecuador.com
-	Mail: info@bateriasecuador.com
-	---------------------------*/
 
 if (isset($_POST['nombre'])){$nombre=$_POST['nombre'];}
-
 
 	/* Connect To Database*/
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos

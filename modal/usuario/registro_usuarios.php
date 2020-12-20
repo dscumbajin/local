@@ -3,7 +3,7 @@
 		{
 	?>
 	<!-- Modal -->
-	<div class="modal fade" id="nuevoCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal fade" id="nuevoUsuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	    <div class="modal-dialog" role="document">
 	        <div class="modal-content">
 	            <div class="modal-header">
@@ -12,7 +12,7 @@
 	                <h4 class="modal-title" id="myModalLabel"><i class='glyphicon glyphicon-edit'></i> Agregar usuario</h4>
 	            </div>
 	            <div class="modal-body">
-	                <form  class="form-horizontal" method="post" id="guardar_cliente" name="guardar_cliente">
+	                <form  class="form-horizontal" method="post" id="guardar_usuario" name="guardar_usuario">
 	                    <div id="resultados_ajax"></div>
 
 	                    <div class="form-group">

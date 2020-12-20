@@ -10,7 +10,7 @@
 						<h4 class="modal-title" id="myModalLabel"><i class='glyphicon glyphicon-edit'></i> Editar cliente</h4>
 					</div>
 					<div class="modal-body">
-						<form class="form-horizontal" method="post" id="editar_cliente" name="editar_cliente">
+						<form class="form-horizontal" method="post" id="editar_usuario" name="editar_usuario">
 							<div id="resultados_ajax2"></div>
 							<div class="form-group">
 								<label for="mod_nombre" class="col-sm-3 control-label">Nombre</label>

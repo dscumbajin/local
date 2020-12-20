@@ -22,7 +22,7 @@ $login = new Login();
 if ($login->isUserLoggedIn() == true) {
     // the user is logged in. you can do whatever you want here.
     // for demonstration purposes, we simply show the "you are logged in" view.
-   header("location: clientes.php");
+   header("location: usuarios.php");
 
 } else {
     // the user is not logged in. you can do whatever you want here.
@@ -142,7 +142,7 @@ if ($login->isUserLoggedIn() == true) {
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header" style="padding:10px;">
-			<a href="pedidos.php">
+			<a href="home.php">
 			<!--<img width="25%" src="img/logobat.png" alt="Logo">-->
 			</a>
 		</div>

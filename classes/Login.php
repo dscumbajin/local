@@ -67,7 +67,7 @@ class Login
 
                 // database query, getting all the info of the selected user (allows login via email address in the
                 // username field)
-                $sql = "SELECT codigoCliente, nombreCliente, mailCliente, estadoCliente,  password
+                $sql = "SELECT codigoCliente, nombreCliente, mailCliente, estadoCliente, nivel,  password
                         FROM clientes
                         WHERE codigoCliente = '".$user_name."';";
                 $result_of_login_check = $this->db_connection->query($sql);
@@ -87,6 +87,7 @@ class Login
 						$_SESSION['user_name'] = $result_row->nombreCliente;
                         $_SESSION['user_email'] = $result_row->mailCliente;
                         $_SESSION['user_login_status'] = 1;
+                        $_SESSION['user_nivel'] = $result_row->nivel;
 
                     } else {
                         $this->errors[] = "Contraseña no coincide.";

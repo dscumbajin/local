@@ -74,29 +74,29 @@ if ($action == 'ajax') {
 				</tr>
 				<?php
 				while ($row = mysqli_fetch_array($query)) {
-					$id_cliente = $row['codigoCliente'];
-					$nombre_cliente = $row['nombreCliente'];
-					$email_cliente = $row['mailCliente'];
-					$status_cliente = $row['estadoCliente'];
-					if ($status_cliente == 1) {
+					$id_usuario = $row['codigoCliente'];
+					$nombre_usuario = $row['nombreCliente'];
+					$email_usuario = $row['mailCliente'];
+					$status_usuario = $row['estadoCliente'];
+					if ($status_usuario == 1) {
 						$estado = "Activo";
 					} else {
 						$estado = "Inactivo";
 					}
 				?>
 
-					<input type="hidden" value="<?php echo $nombre_cliente; ?>" id="nombre_cliente<?php echo $id_cliente; ?>">
-					<input type="hidden" value="<?php echo $email_cliente; ?>" id="email_cliente<?php echo $id_cliente; ?>">
-					<input type="hidden" value="<?php echo $status_cliente; ?>" id="status_cliente<?php echo $id_cliente; ?>">
+					<input type="hidden" value="<?php echo $nombre_usuario; ?>" id="nombre_usuario<?php echo $id_usuario; ?>">
+					<input type="hidden" value="<?php echo $email_usuario; ?>" id="email_usuario<?php echo $id_usuario; ?>">
+					<input type="hidden" value="<?php echo $status_usuario; ?>" id="status_usuario<?php echo $id_usuario; ?>">
 
 					<tr>
-						<td><?php echo $id_cliente; ?></td>
-						<td><?php echo $nombre_cliente; ?></td>
-						<td><?php echo $email_cliente; ?></td>
+						<td><?php echo $id_usuario; ?></td>
+						<td><?php echo $nombre_usuario; ?></td>
+						<td><?php echo $email_usuario; ?></td>
 						<td><?php echo $estado; ?></td>
 						<td><span>
-								<a href="#" title='Editar usuario' onclick="obtener_datos('<?php echo $id_cliente; ?>');" data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-edit"></i></a>
-								<a href="#" title='Borrar usuario' onclick="eliminar('<?php echo $id_cliente; ?>')"><i class="glyphicon glyphicon-trash" style="color: red;"></i> </a>
+								<a href="#" title='Editar usuario' onclick="obtener_datos('<?php echo $id_usuario; ?>');" data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-edit"></i></a>
+								<a href="#" title='Borrar usuario' onclick="eliminar('<?php echo $id_usuario; ?>')"><i class="glyphicon glyphicon-trash" style="color: red;"></i> </a>
 							</span>
 						</td>
 

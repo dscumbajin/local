@@ -6,7 +6,7 @@
         }else if (empty($_POST['mod_nombre'])) {
            $errors[] = "Nombre vacío";
         }  else if ($_POST['mod_estado']==""){
-			$errors[] = "Selecciona el estado del cliente";
+			$errors[] = "Selecciona el estado del Usuario";
 		}  else if (
 			!empty($_POST['mod_id']) &&
 			!empty($_POST['mod_nombre']) &&
@@ -24,7 +24,7 @@
 		$sql="UPDATE clientes SET nombreCliente='".$nombre."', mailCliente='".$email."', estadoCliente='".$estado."' WHERE codigoCliente='".$id_cliente."'";
 		$query_update = mysqli_query($con,$sql);
 			if ($query_update){
-				$messages[] = "Usuario ha sido actualizado satisfactoriamente.";
+				$messages[] = "cliente ha sido actualizado satisfactoriamente.";
 			} else{
 				$errors []= "Lo siento algo ha salido mal intenta nuevamente.".mysqli_error($con);
 			}

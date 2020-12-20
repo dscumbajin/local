@@ -14,10 +14,10 @@ if (empty($_POST['nombre'])) {
 	$nombre = mysqli_real_escape_string($con, (strip_tags($_POST["nombre"], ENT_QUOTES)));
 	$email = mysqli_real_escape_string($con, (strip_tags($_POST["email"], ENT_QUOTES)));
 	$estado = intval($_POST['estado']);
-	$sql = "INSERT INTO clientes (codigoCliente, nombreCliente, mailCliente, estadoCliente) VALUES ('$codigo','$nombre','$email','$estado')";
+	$sql = "INSERT INTO clientes (codigoCliente , nombreCliente , mailCliente , estadoCliente ) VALUES ('$codigo','$nombre','$email','$estado')";
 	$query_new_insert = mysqli_query($con, $sql);
 	if ($query_new_insert) {
-		$messages[] = "Usuario ha sido ingresado satisfactoriamente.";
+		$messages[] = "Cliente ha sido ingresado satisfactoriamente.";
 	} else {
 		$errors[] = "Lo siento algo ha salido mal intenta nuevamente." . mysqli_error($con);
 	}

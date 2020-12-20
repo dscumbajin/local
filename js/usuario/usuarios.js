@@ -6,7 +6,7 @@
 		    var q = $("#q").val();
 		    $("#loader").fadeIn('slow');
 		    $.ajax({
-		        url: './ajax/usuario/buscar_clientes.php?action=ajax&page=' + page + '&q=' + q,
+		        url: './ajax/usuario/buscar_usuarios.php?action=ajax&page=' + page + '&q=' + q,
 		        beforeSend: function(objeto) {
 		            $('#loader').html('<img src="./img/ajax-loader.gif"> Cargando...');
 		        },
@@ -23,7 +23,7 @@
 		    if (confirm("Realmente deseas eliminar el cliente")) {
 		        $.ajax({
 		            type: "GET",
-		            url: "./ajax/usuario/buscar_clientes.php",
+		            url: "./ajax/usuario/buscar_usuarios.php",
 		            data: "id=" + id,
 		            "q": q,
 		            beforeSend: function(objeto) {
@@ -37,13 +37,13 @@
 		    }
 		}
 
-		$("#guardar_cliente").submit(function(event) {
+		$("#guardar_usuario").submit(function(event) {
 		    $('#guardar_datos').attr("disabled", true);
 
 		    var parametros = $(this).serialize();
 		    $.ajax({
 		        type: "POST",
-		        url: "ajax/usuario/nuevo_cliente.php",
+		        url: "ajax/usuario/nuevo_usuario.php",
 		        data: parametros,
 		        beforeSend: function(objeto) {
 		            $("#resultados_ajax").html("Mensaje: Cargando...");
@@ -57,13 +57,13 @@
 		    event.preventDefault();
 		})
 
-		$("#editar_cliente").submit(function(event) {
+		$("#editar_usuario").submit(function(event) {
 		    $('#actualizar_datos').attr("disabled", true);
 
 		    var parametros = $(this).serialize();
 		    $.ajax({
 		        type: "POST",
-		        url: "ajax/usuario/editar_cliente.php",
+		        url: "ajax/usuario/editar_usuario.php",
 		        data: parametros,
 		        beforeSend: function(objeto) {
 		            $("#resultados_ajax2").html("Mensaje: Cargando...");
@@ -78,13 +78,13 @@
 		})
 
 		function obtener_datos(id) {
-		    var nombre_cliente = $("#nombre_cliente" + id).val();
-		    var email_cliente = $("#email_cliente" + id).val();
-		    var status_cliente = $("#status_cliente" + id).val();
+		    var nombre_usuario = $("#nombre_usuario" + id).val();
+		    var email_usuario = $("#email_usuario" + id).val();
+		    var status_usuario = $("#status_usuario" + id).val();
 
-		    $("#mod_nombre").val(nombre_cliente);
-		    $("#mod_email").val(email_cliente);
-		    $("#mod_estado").val(status_cliente);
+		    $("#mod_nombre").val(nombre_usuario);
+		    $("#mod_email").val(email_usuario);
+		    $("#mod_estado").val(status_usuario);
 		    $("#mod_id").val(id);
 
 		}

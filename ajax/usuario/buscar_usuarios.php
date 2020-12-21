@@ -53,7 +53,7 @@ if ($action == 'ajax') {
 	$row = mysqli_fetch_array($count_query);
 	$numrows = $row['numrows'];
 	$total_pages = ceil($numrows / $per_page);
-	$reload = './clientes.php';
+	$reload = '../../usuarios.php';
 	//main query to fetch the data
 	$sql = "SELECT * FROM  $sTable $sWhere LIMIT $offset,$per_page";
 	$query = mysqli_query($con, $sql);
@@ -95,7 +95,7 @@ if ($action == 'ajax') {
 						<td><?php echo $email_usuario; ?></td>
 						<td><?php echo $estado; ?></td>
 						<td><span>
-								<a href="#" title='Editar usuario' onclick="obtener_datos('<?php echo $id_usuario; ?>');" data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-edit"></i></a>
+								<a href="#" title='Editar usuario' onclick="obtener_datos('<?php echo $id_usuario; ?>');" data-toggle="modal" data-target="#modUsuario"><i class="glyphicon glyphicon-edit"></i></a>
 								<a href="#" title='Borrar usuario' onclick="eliminar('<?php echo $id_usuario; ?>')"><i class="glyphicon glyphicon-trash" style="color: red;"></i> </a>
 							</span>
 						</td>

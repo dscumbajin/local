@@ -7,14 +7,14 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="myModalLabel"><i class='glyphicon glyphicon-edit'></i> Agregar presupuesto</h4>
+						<h4 class="modal-title" id="myModalLabel"><i class='glyphicon glyphicon-edit'></i> Agregar Presupuesto</h4>
 					</div>
 					<div class="modal-body">
 						<form class="form-horizontal" method="post" id="guardar_presupuesto" name="guardar_presupuesto">
 							<div id="resultados_ajax"></div>
 
 							<!-- Date -->
-							<div class="form-group">
+<!-- 							<div class="form-group">
 								<label for="fecha_presupuesto" class="col-sm-3 control-label">Fecha</label>
 								<div class=" col-sm-8 input-group date" data-provide="datepicker">
 									<input type="text" class="form-control" id="fecha_presupuesto" name="fecha_presupuesto" placeholder="yyyy-mm-dd">
@@ -22,7 +22,18 @@
 										<span class="glyphicon glyphicon-th"></span>
 									</div>
 								</div>
-							</div>
+							</div> -->
+
+							<!-- Date -->
+							<div class="form-group">
+								<label for= "fecha_presupuesto" class="col-sm-3 control-label">Fecha:</label>
+								<div class="col-sm-8 input-group date" id="fecha" data-target-input="nearest">
+									<input type="text" class="form-control datetimepicker-input" data-target="#fecha" id= "fecha_presupuesto" name="fecha_presupuesto" placeholder="Seleccionar fecha" required />
+										<div class="input-group-append" data-target="#fecha" data-toggle="datetimepicker">
+										<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+									</div>
+								</div>
+                			</div>
 
 							<div class="form-group">
 								<label for="cantidad_mes_presupuesto" class="col-sm-3 control-label">Cantidad Mes</label>

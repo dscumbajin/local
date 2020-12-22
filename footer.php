@@ -16,6 +16,41 @@
     <!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="js/bootstrap.bundle.min.js"></script>
+<!-- Select2 -->
+<script src="js/select2.full.min.js"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="js/jquery.bootstrap-duallistbox.min.js"></script>
+<!-- InputMask -->
+<script src="js/moment.min.js"></script>
+<script src="js/jquery.inputmask.bundle.min.js"></script>
+<!-- date-range-picker -->
+<script src="js/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Bootstrap Switch -->
+<script src="js/bootstrap-switch.min.js"></script>
+<!-- DataTables -->
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="js/dataTables.bootstrap4.min.js"></script>
+<script src="js/dataTables.responsive.min.js"></script>
+<script src="js/responsive.bootstrap4.min.js"></script>
+<!-- AdminLTE App -->
+<script src="js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="js/demo.js"></script>
+<!--Dependencias adicionales-->
+<script src="js/admin-ajax.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+<!--DataTables Custom-->
+<script src="js/app.js"></script>
+<script src="js/login-ajax.js"></script>
+<script src="js/es.js"></script>
+
     <script>
    $(document).ready(function(){
       //Promise.resolve().then(functiontoRunVerySoonButNotNow);

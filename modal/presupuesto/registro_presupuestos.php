@@ -25,9 +25,9 @@
 							</div> -->
 
 							<!-- Date -->
-							<div class="form-group">
+							<div class="form-group" >
 								<label for= "fecha_presupuesto" class="col-sm-3 control-label">Fecha:</label>
-								<div class="col-sm-8 input-group date" id="fecha" data-target-input="nearest">
+								<div class="col-sm-8 input-group date" style = "display: flex;" id="fecha" data-target-input="nearest">
 									<input type="text" class="form-control datetimepicker-input" data-target="#fecha" id= "fecha_presupuesto" name="fecha_presupuesto" placeholder="Seleccionar fecha" required />
 										<div class="input-group-append" data-target="#fecha" data-toggle="datetimepicker">
 										<div class="input-group-text"><i class="fa fa-calendar"></i></div>

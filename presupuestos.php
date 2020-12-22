@@ -50,8 +50,7 @@
                     <div class="form-group row">
                         <label for="q" class="col-md-2 control-label">Presupuesto</label>
                         <div class="col-md-5">
-                            <input type="text" class="form-control" id="q" placeholder="Fecha"
-                                onkeyup='load(1);'>
+                            <input type="text" class="form-control" id="q" placeholder="Fecha" onkeyup='load(1);'>
                         </div>
                         <div class="col-md-3">
                             <button type="button" class="btn btn-default" onclick='load(1);'>
@@ -76,25 +75,14 @@
 	include("footer.php");
 	?>
     <script>
-    if($('#historico').hasClass('activarnav')){
-		$('#historico').removeClass('activarnav');
-		$('#cliente').addClass('activarnav');
-		$('#facturacion').removeClass('activarnav');
+    if ($('#historico').hasClass('activarnav')) {
+        $('#historico').removeClass('activarnav');
+        $('#cliente').addClass('activarnav');
+        $('#facturacion').removeClass('activarnav');
     }
-   
     </script>
     <script type="text/javascript" src="js/presupuesto/presupuestos.js"></script>
-    <script type="text/javascript" src="js/daterangepicker.js"></script>
-    <script>
-    $(function () {
- //Date range picker
 
- $('#fecha').datetimepicker({   
-        format: 'L',
-        locale: 'es'
-    });
-    });
-    </script>
     <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
 </body>

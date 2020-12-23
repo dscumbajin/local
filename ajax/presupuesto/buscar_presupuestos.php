@@ -80,6 +80,7 @@ if ($action == 'ajax') {
 					<th>COD Linea</th>
 					<th>Linea</th>
 					<th>Acciones</th>
+					
 
 				</tr>
 				<?php

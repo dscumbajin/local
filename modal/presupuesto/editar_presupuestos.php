@@ -2,16 +2,16 @@
 	if (isset($con)) {
 	?>
 	<!-- Modal -->
-	<div class="modal fade" id="modPresupuesto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal fade" id="modPresupuesto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
 	    <div class="modal-dialog" role="document">
 	        <div class="modal-content">
 	            <div class="modal-header">
 	                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
 	                        aria-hidden="true">&times;</span></button>
-	                <h4 class="modal-title" id="myModalLabel"><i class='glyphicon glyphicon-edit'></i> Editar Presupuesto
+	                <h4 class="modal-title" id="myModalLabel1"><i class='glyphicon glyphicon-edit'></i> Editar Presupuesto
 	                </h4>
 	            </div>
-	            <div class="modal-body">
+	            <div id="cuerpo" class="modal-body">
 	                <form class="form-horizontal" method="post" id="editar_presupuesto" name="editar_presupuesto">
 	                    <div id="resultados_ajax2"></div>
 	                    <input type="hidden" name="mod_id" id="mod_id">
@@ -27,7 +27,7 @@
 							</div> -->
 
 	                    <!-- Date -->
-	                    <div class="form-group">
+	                  <!--   <div class="form-group">
 	                        <label for="mod_fecha_presupuesto" class="col-sm-3 control-label">Fecha</label>
 	                        <div class="col-sm-8 input-group date" id="fecha" data-target-input="nearest">
 	                            <input type="text" class="form-control datetimepicker-input" data-target="#fecha"
@@ -37,7 +37,7 @@
 	                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
 	                            </div>
 	                        </div>
-	                    </div>
+	                    </div> -->
 
 	                    <div class="form-group">
 	                        <label for="mod_cantidad_mes_presupuesto" class="col-sm-3 control-label">Cantidad Mes</label>
@@ -77,7 +77,7 @@
 
 	            </div>
 	            <div class="modal-footer">
-	                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+	                <button type="button" class="btn btn-default" data-dismiss="modal" id ="reload">Cerrar</button>
 	                <button type="submit" class="btn btn-primary" id="actualizar_datos">Actualizar datos</button>
 	            </div>
 	            </form>

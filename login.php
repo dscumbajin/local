@@ -214,7 +214,7 @@ if ($login->isUserLoggedIn() == true) {
 						?>
 						<span id="reauth-email" class="reauth-email"></span>
 						<label for="user_name">Usuario</label>
-						<input class="form-control" placeholder="Usuario (RUC)" name="user_name" id="user_name" type="text" value="" autofocus="" required>
+						<input class="form-control" placeholder="Usuario" name="user_name" id="user_name" type="text" value="" autofocus="" required>
 						<label for="user_password" style="margin-top:10px;">Contraseña</label>
 						<input class="form-control" placeholder="Contraseña" name="user_password" id="user_password" type="password" value="" autocomplete="off" required>
 						<div class="acciones">

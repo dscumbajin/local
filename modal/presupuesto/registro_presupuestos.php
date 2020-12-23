@@ -14,17 +14,6 @@
 							<div id="resultados_ajax"></div>
 
 							<!-- Date -->
-<!-- 							<div class="form-group">
-								<label for="fecha_presupuesto" class="col-sm-3 control-label">Fecha</label>
-								<div class=" col-sm-8 input-group date" data-provide="datepicker">
-									<input type="text" class="form-control" id="fecha_presupuesto" name="fecha_presupuesto" placeholder="yyyy-mm-dd">
-									<div class="input-group-addon">
-										<span class="glyphicon glyphicon-th"></span>
-									</div>
-								</div>
-							</div> -->
-
-							<!-- Date -->
 							<div class="form-group" >
 								<label for= "fecha_presupuesto" class="col-sm-3 control-label">Fecha:</label>
 								<div class="col-sm-8 input-group date" style = "display: flex;" id="fecha" data-target-input="nearest">
@@ -69,7 +58,7 @@
 									<select class="form-control" id="codigoVendedor" name="codigoVendedor" required>
 										<?php
 										try {
-											$sql = 'SELECT * FROM vendedor';
+											$sql = 'SELECT * FROM vendedor WHERE estadoVendedor = 1';
 
 											$resultado = $con->query($sql);
 											while ($vendedor = $resultado->fetch_assoc()) { ?>
@@ -89,7 +78,7 @@
 									<select class="form-control" id="codigoLinea" name="codigoLinea" required>
 										<?php
 										try {
-											$sql = 'SELECT * FROM listalinea';
+											$sql = 'SELECT * FROM listalinea  WHERE estadoLinea = 0';
 
 											$resultado = $con->query($sql);
 											while ($listalinea = $resultado->fetch_assoc()) { ?>
@@ -107,7 +96,7 @@
 							<div class="form-group">
 								<label for="estado" class="col-sm-3 control-label">Estado</label>
 								<div class="col-sm-8">
-									<select class="form-control sel" id="estado" name="estado" required>
+									<select class="form-control " id="estado" name="estado" required>
 										<option value="">-- Selecciona estado --</option>
 										<option value="1" selected>Activo</option>
 										<option value="0">Inactivo</option>

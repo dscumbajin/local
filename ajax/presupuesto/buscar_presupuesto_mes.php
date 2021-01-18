@@ -7,9 +7,9 @@ require_once("../../config/conexion.php"); //Contiene funcion que conecta a la b
 
 $action = (isset($_REQUEST['action']) && $_REQUEST['action'] != NULL) ? $_REQUEST['action'] : '';
 if (isset($_GET['id'])) {
-	$id_presupuesto = $_GET['id'];
+	$id_admin = $_GET['id'];
 
-	if ($delete1 = mysqli_query($con, "DELETE FROM presupuesto_mes WHERE idPresMes='" . $id_presupuesto . "'")) {
+	if ($delete1 = mysqli_query($con, "DELETE FROM admins WHERE idUsu='" . $id_admin . "'")) {
 ?>
 		<div class="alert alert-success alert-dismissible" role="alert">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -29,25 +29,24 @@ if (isset($_GET['id'])) {
 
 if ($action == 'ajax') {
 	// escaping, additionally removing everything that could be (html/javascript-) code
+	// idUsu, usuario, nombreUsu, password, mail, idPerfil
 	$q = mysqli_real_escape_string($con, (strip_tags($_REQUEST['q'], ENT_QUOTES)));
-	$aColumns = array(); //Columnas de busqueda
+	$aColumns = array('anio','mes','nomVen','nomLinea'); //Columnas de busqueda
 	$sTable = "presupuesto_mes, presupuesto_anio, vendedor, listalinea, segmento";
-	$sWhere = "WHERE presupuesto_anio.idPresAnio = presupuesto_mes.idPresAnio
-	AND listalinea.codLinea=presupuesto_anio.codLinea
-	AND vendedor.codVen=presupuesto_anio.codVen
-	AND segmento.codSeg = vendedor.codSeg ";
+	$sWhere = " WHERE presupuesto_anio.idPresAnio = presupuesto_mes.idPresAnio AND 
+	presupuesto_anio.codVen = vendedor.codVen AND presupuesto_anio.codLinea = listalinea.codLinea
+	AND vendedor.codSeg = segmento.codSeg";
 	if ($_GET['q'] != "") {
-		$sWhere = "WHERE presupuesto_anio.idPresAnio = presupuesto_mes.idPresAnio
-		AND listalinea.codLinea=presupuesto_anio.codLinea
-		AND vendedor.codVen=presupuesto_anio.codVen
-		AND segmento.codSeg = vendedor.codSeg AND (";
+		$sWhere = "WHERE presupuesto_anio.idPresAnio = presupuesto_mes.idPresAnio AND 
+		presupuesto_anio.codVen = vendedor.codVen AND presupuesto_anio.codLinea = listalinea.codLinea
+		AND vendedor.codSeg = segmento.codSeg AND (";
 		for ($i = 0; $i < count($aColumns); $i++) {
 			$sWhere .= $aColumns[$i] . " LIKE '%" . $q . "%' OR ";
 		}
 		$sWhere = substr_replace($sWhere, "", -3);
 		$sWhere .= ')';
 	}
-
+	$sWhere .= " ";
 	include '../pagination.php'; //include pagination file
 	//pagination variables
 	$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page'])) ? $_REQUEST['page'] : 1;
@@ -59,12 +58,9 @@ if ($action == 'ajax') {
 	$row = mysqli_fetch_array($count_query);
 	$numrows = $row['numrows'];
 	$total_pages = ceil($numrows / $per_page);
-	$reload = '../../presupuestos.php';
+	$reload = '../../usuarios.php';
 	//main query to fetch the data
-	$sql = "SELECT presupuesto_mes.idPresMes, anio, mes, cantMesU, 
-	cantPromoU, cantGarantU, cantTotalU, presMesV, vendedor.codVen, 
-	nomVen, estadoVen, listalinea.codLinea, nomLinea, desSeg 
-	FROM  $sTable $sWhere LIMIT $offset,$per_page";
+	$sql = "SELECT * FROM  $sTable $sWhere LIMIT $offset,$per_page";
 	$query = mysqli_query($con, $sql);
 	//loop through fetched data
 	if ($numrows > 0) {
@@ -73,7 +69,6 @@ if ($action == 'ajax') {
 		<div class="table-responsive">
 			<table id="registrosTable" class="table ">
 				<tr class="info">
-
 					<th>Año</th>
 					<th>Mes</th>
 					<th>Vendedor</th>
@@ -87,10 +82,10 @@ if ($action == 'ajax') {
 					<th>Segmento</th>
 					<th>Acciones</th>
 
-
 				</tr>
 				<?php
 				while ($row = mysqli_fetch_array($query)) {
+					// idUsu, usuario, nombreUsu, password, mail, idPerfil
 					$id_presupuesto = $row['idPresMes'];
 					$anio_presupuesto = $row['anio'];
 					$fecha_presupuesto = $row['mes'];
@@ -104,9 +99,8 @@ if ($action == 'ajax') {
 					$linea_presupuesto = $row['nomLinea'];
 					$segmento_presupuesto = $row['desSeg'];
 
-
-
 				?>
+
 					<input type="hidden" value="<?php echo $anio_presupuesto; ?>" id="anio_presupuesto<?php echo $id_presupuesto; ?>">
 					<input type="hidden" value="<?php echo $fecha_presupuesto; ?>" id="fecha_presupuesto<?php echo $id_presupuesto; ?>">
 					<input type="hidden" value="<?php echo $vendedor_presupuesto; ?>" id="vendedor_presupuesto<?php echo $id_presupuesto; ?>">

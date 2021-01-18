@@ -12,7 +12,7 @@
 	
 	$active_clientes="active";
 
-	$title="Presupuestos | Baterias Ecuador";
+	$title="Usuarios | Baterias Ecuador";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,26 +31,19 @@
     <div class="container">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <div class="btn-group pull-right">
-                    <button type='button' class="btn btn-info" data-toggle="modal" data-target="#nuevoPresupuesto"><span
-                            class="glyphicon glyphicon-plus"></span> Nuevo Presupuesto</button>
-                </div>
-                <h4><i class='glyphicon glyphicon-search'></i> Buscar Presupuestos</h4>
+         
+                <h4><i class='glyphicon glyphicon-search'></i> Buscar presupuesto-mes</h4>
             </div>
             <div class="panel-body">
 
 
-
-                <?php
-				include("modal/presupuesto/registro_presupuestos.php");
-				include("modal/presupuesto/editar_presupuestos.php");
-			?>
                 <form class="form-horizontal" role="form" id="datos_cotizacion">
 
                     <div class="form-group row">
-                        <label for="q" class="col-md-2 control-label">Presupuesto</label>
+                        <label for="q" class="col-md-2 control-label">Presupuesto Mes</label>
                         <div class="col-md-5">
-                            <input type="text" class="form-control" id="q" placeholder="Fecha" onkeyup='load(1);'>
+                            <input type="text" class="form-control" id="q" placeholder="Año - mes - vendedor - linea"
+                                onkeyup='load(1);'>
                         </div>
                         <div class="col-md-3">
                             <button type="button" class="btn btn-default" onclick='load(1);'>
@@ -75,16 +68,13 @@
 	include("footer.php");
 	?>
     <script>
-    if ($('#historico').hasClass('activarnav')) {
-        $('#historico').removeClass('activarnav');
-        $('#cliente').addClass('activarnav');
-        $('#facturacion').removeClass('activarnav');
-    }
+    if($('#historico').hasClass('activarnav')){
+		$('#historico').removeClass('activarnav');
+		$('#cliente').addClass('activarnav');
+		$('#facturacion').removeClass('activarnav');
+	}
     </script>
-    <script type="text/javascript" src="js/presupuesto/presupuestos.js"></script>
-
-    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
+    <script type="text/javascript" src="js/presupuesto/presupuesto-mes.js"></script>
 </body>
 
 </html>

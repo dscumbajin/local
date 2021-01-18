@@ -30,7 +30,7 @@
 							<li><a href="usuarios.php"><span class="activarnav historico activarbarra" id="historico">Usuarios</span> <span class="sr-only" style="display:none">(current)</span></a></li>
 
 						<?php } ?>
-						<li><a href="presupuestos.php"><span class=" nuevo activarbarra " id="presupuesto">Presupuestos</span> </a></li>
+						<li><a href="presupuesto-mes.php"><span class=" nuevo activarbarra " id="presupuesto">Presupuestos-Mes</span> </a></li>
 
 						<li><a href="#"><?php 
 						 if ($_SESSION['user_nivel'] == 2) {

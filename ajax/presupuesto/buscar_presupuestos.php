@@ -9,7 +9,7 @@ $action = (isset($_REQUEST['action']) && $_REQUEST['action'] != NULL) ? $_REQUES
 if (isset($_GET['id'])) {
 	$id_presupuesto = $_GET['id'];
 
-	if ($delete1 = mysqli_query($con, "DELETE FROM presupuesto WHERE codigoPresupuesto='" . $id_presupuesto . "'")) {
+	if ($delete1 = mysqli_query($con, "DELETE FROM presupuesto_mes WHERE idPresMes='" . $id_presupuesto . "'")) {
 ?>
 		<div class="alert alert-success alert-dismissible" role="alert">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -30,20 +30,24 @@ if (isset($_GET['id'])) {
 if ($action == 'ajax') {
 	// escaping, additionally removing everything that could be (html/javascript-) code
 	$q = mysqli_real_escape_string($con, (strip_tags($_REQUEST['q'], ENT_QUOTES)));
-	$aColumns = array('fechaPresupuesto', 'codigoPresupuesto'); //Columnas de busqueda
-	$sTable = "presupuesto, vendedor, listalinea";
-	$sWhere = "WHERE presupuesto.codigoLinea = listalinea.codigoLinea
-	AND presupuesto.codigoVendedor = vendedor.codigoVendedor ";
+	$aColumns = array(); //Columnas de busqueda
+	$sTable = "presupuesto_mes, presupuesto_anio, vendedor, listalinea, segmento";
+	$sWhere = "WHERE presupuesto_anio.idPresAnio = presupuesto_mes.idPresAnio
+	AND listalinea.codLinea=presupuesto_anio.codLinea
+	AND vendedor.codVen=presupuesto_anio.codVen
+	AND segmento.codSeg = vendedor.codSeg ";
 	if ($_GET['q'] != "") {
-		$sWhere = "WHERE  presupuesto.codigoLinea = listalinea.codigoLinea
-		AND presupuesto.codigoVendedor = vendedor.codigoVendedor AND (";
+		$sWhere = "WHERE presupuesto_anio.idPresAnio = presupuesto_mes.idPresAnio
+		AND listalinea.codLinea=presupuesto_anio.codLinea
+		AND vendedor.codVen=presupuesto_anio.codVen
+		AND segmento.codSeg = vendedor.codSeg AND (";
 		for ($i = 0; $i < count($aColumns); $i++) {
 			$sWhere .= $aColumns[$i] . " LIKE '%" . $q . "%' OR ";
 		}
 		$sWhere = substr_replace($sWhere, "", -3);
 		$sWhere .= ')';
 	}
-	$sWhere .= " order by fechaPresupuesto ";
+
 	include '../pagination.php'; //include pagination file
 	//pagination variables
 	$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page'])) ? $_REQUEST['page'] : 1;
@@ -57,9 +61,10 @@ if ($action == 'ajax') {
 	$total_pages = ceil($numrows / $per_page);
 	$reload = '../../presupuestos.php';
 	//main query to fetch the data
-	$sql = "SELECT codigoPresupuesto, fechaPresupuesto, cantidadMesPresupuesto, presupuestoMes, cantidadPromos, 
-	cantidadGarantias, cantidadTotal, status, vendedor.codigoVendedor, vendedor.nombreVendedor, listalinea.codigoLinea, 
-	listalinea.nombreLinea FROM  $sTable $sWhere LIMIT $offset,$per_page";
+	$sql = "SELECT presupuesto_mes.idPresMes, anio, mes, cantMesU, 
+	cantPromoU, cantGarantU, cantTotalU, presMesV, vendedor.codVen, 
+	nomVen, estadoVen, listalinea.codLinea, nomLinea, desSeg 
+	FROM  $sTable $sWhere LIMIT $offset,$per_page";
 	$query = mysqli_query($con, $sql);
 	//loop through fetched data
 	if ($numrows > 0) {
@@ -69,60 +74,63 @@ if ($action == 'ajax') {
 			<table id="registrosTable" class="table ">
 				<tr class="info">
 
-					<th>Fecha</th>
-					<th>COD Vendedor</th>
+					<th>Año</th>
+					<th>Mes</th>
 					<th>Vendedor</th>
+					<th>Estado</th>
 					<th>Cantidad Mes</th>
-					<th>Presupuesto</th>
 					<th>Cantidad Promos</th>
 					<th>Cantidad Garantía</th>
 					<th>Cantidad Total</th>
-					<th>COD Linea</th>
+					<th>Presupuesto</th>
 					<th>Linea</th>
+					<th>Segmento</th>
 					<th>Acciones</th>
-					
+
 
 				</tr>
 				<?php
 				while ($row = mysqli_fetch_array($query)) {
-					$id_presupuesto = $row['codigoPresupuesto'];
-					$fecha_presupuesto = $row['fechaPresupuesto'];
-					$cod_vendedor_presupuesto = $row['codigoVendedor'];
-					$vendedor_presupuesto = $row['nombreVendedor'];
-					$cantidad_mes_presupuesto = $row['cantidadMesPresupuesto'];
-					$presupuesto_mes = $row['presupuestoMes'];
-					$cantidad_promos_presupuesto = $row['cantidadPromos'];
-					$cantidad_garantia_presupuesto = $row['cantidadGarantias'];
-					$cantidad_total_presupuesto = $row['cantidadTotal'];
-					$cod_linea_presupuesto = $row['codigoLinea'];
-					$linea_presupuesto = $row['nombreLinea'];
-					$status = $row['status'];
+					$id_presupuesto = $row['idPresMes'];
+					$anio_presupuesto = $row['anio'];
+					$fecha_presupuesto = $row['mes'];
+					$vendedor_presupuesto = $row['nomVen'];
+					$status = $row['estadoVen'];
+					$cantidad_mes_presupuesto = $row['cantMesU'];
+					$cantidad_promos_presupuesto = $row['cantPromoU'];
+					$cantidad_garantia_presupuesto = $row['cantGarantU'];
+					$cantidad_total_presupuesto = $row['cantTotalU'];
+					$presupuesto_mes = $row['presMesV'];
+					$linea_presupuesto = $row['nomLinea'];
+					$segmento_presupuesto = $row['desSeg'];
+
 
 
 				?>
+					<input type="hidden" value="<?php echo $anio_presupuesto; ?>" id="anio_presupuesto<?php echo $id_presupuesto; ?>">
+					<input type="hidden" value="<?php echo $fecha_presupuesto; ?>" id="fecha_presupuesto<?php echo $id_presupuesto; ?>">
+					<input type="hidden" value="<?php echo $vendedor_presupuesto; ?>" id="vendedor_presupuesto<?php echo $id_presupuesto; ?>">
+					<input type="hidden" value="<?php echo $status; ?>" id="status<?php echo $id_presupuesto; ?>">
+					<input type="hidden" value="<?php echo $cantidad_mes_presupuesto; ?>" id="cantidad_mes_presupuesto<?php echo $id_presupuesto; ?>">
+					<input type="hidden" value="<?php echo $cantidad_promos_presupuesto; ?>" id="cantidad_promos_presupuesto<?php echo $id_presupuesto; ?>">
+					<input type="hidden" value="<?php echo $cantidad_garantia_presupuesto; ?>" id="cantidad_garantia_presupuesto<?php echo $id_presupuesto; ?>">
+					<input type="hidden" value="<?php echo $cantidad_total_presupuesto; ?>" id="cantidad_total_presupuesto<?php echo $id_presupuesto; ?>">
+					<input type="hidden" value="<?php echo $presupuesto_mes; ?>" id="presupuesto_mes<?php echo $id_presupuesto; ?>">
+					<input type="hidden" value="<?php echo $linea_presupuesto; ?>" id="linea_presupuesto<?php echo $id_presupuesto; ?>">
+					<input type="hidden" value="<?php echo $segmento_presupuesto; ?>" id="segmento_presupuesto<?php echo $id_presupuesto; ?>">
 
-					<input type="hidden" value="<?php echo $fecha_presupuesto;?>"id="fecha_presupuesto<?php echo $id_presupuesto; ?>">  
-					<input type="hidden" value="<?php echo $cod_vendedor_presupuesto;?>"id="cod_vendedor_presupuesto<?php echo $id_presupuesto; ?>">
-					<input type="hidden" value="<?php echo $vendedor_presupuesto;?>"id="vendedor_presupuesto<?php echo $id_presupuesto; ?>"> 
-					<input type="hidden" value="<?php echo $cantidad_mes_presupuesto;?>"id="cantidad_mes_presupuesto<?php echo $id_presupuesto; ?>">
-					<input type="hidden" value="<?php echo $presupuesto_mes;?>"id="presupuesto_mes<?php echo $id_presupuesto; ?>">
-					<input type="hidden" value="<?php echo $cantidad_promos_presupuesto;?>"id="cantidad_promos_presupuesto<?php echo $id_presupuesto; ?>"> 
-					<input type="hidden" value="<?php echo $cantidad_garantia_presupuesto;?>"id="cantidad_garantia_presupuesto<?php echo $id_presupuesto; ?>"> 
-					<input type="hidden" value="<?php echo $cantidad_total_presupuesto;?>"id="cod_linea_presupuesto<?php echo $id_presupuesto; ?>"> 
-					<input type="hidden" value="<?php echo $cod_linea_presupuesto;?>"id="cod_linea_presupuesto<?php echo $id_presupuesto; ?>"> 
-					<input type="hidden" value="<?php echo $linea_presupuesto;?>"id="linea_presupuesto<?php echo $id_presupuesto; ?>"> 
-					<input type="hidden" value="<?php echo $status;?>"id="status<?php echo $id_presupuesto; ?>"> 
 					<tr>
+						<td><?php echo $anio_presupuesto; ?></td>
 						<td><?php echo $fecha_presupuesto; ?></td>
-						<td><?php echo $cod_vendedor_presupuesto; ?></td>
 						<td><?php echo $vendedor_presupuesto; ?></td>
+						<td><?php echo $status; ?></td>
 						<td><?php echo $cantidad_mes_presupuesto; ?></td>
-						<td><?php echo $presupuesto_mes; ?></td>
 						<td><?php echo $cantidad_promos_presupuesto; ?></td>
 						<td><?php echo $cantidad_garantia_presupuesto; ?></td>
 						<td><?php echo $cantidad_total_presupuesto; ?></td>
-						<td><?php echo $cod_linea_presupuesto; ?></td>
+						<td><?php echo $presupuesto_mes; ?></td>
 						<td><?php echo $linea_presupuesto; ?></td>
+						<td><?php echo $segmento_presupuesto; ?></td>
 
 
 						<td><span>

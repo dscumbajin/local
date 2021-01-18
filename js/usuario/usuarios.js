@@ -20,7 +20,7 @@
 
 		function eliminar(id) {
 		    var q = $("#q").val();
-		    if (confirm("Realmente deseas eliminar el cliente")) {
+		    if (confirm("Realmente deseas eliminar el usuario")) {
 		        $.ajax({
 		            type: "GET",
 		            url: "./ajax/usuario/buscar_usuarios.php",
@@ -78,13 +78,15 @@
 		})
 
 		function obtener_datos(id) {
+		    var usuario_usuario = $("#usuario_usuario" + id).val();
 		    var nombre_usuario = $("#nombre_usuario" + id).val();
 		    var email_usuario = $("#email_usuario" + id).val();
-		    var status_usuario = $("#status_usuario" + id).val();
+		    var perfil_usuario = $("#perfil_usuario" + id).val();
 
+		    $("#mod_usuario").val(usuario_usuario);
 		    $("#mod_nombre").val(nombre_usuario);
 		    $("#mod_email").val(email_usuario);
-		    $("#mod_estado").val(status_usuario);
+		    $("#mod_perfil").val(perfil_usuario);
 		    $("#mod_id").val(id);
 
 		}

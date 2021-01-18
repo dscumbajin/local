@@ -16,9 +16,9 @@
 	                    <div id="resultados_ajax"></div>
 
 	                    <div class="form-group">
-	                        <label for="codigo" class="col-sm-3 control-label">Usuario</label>
+	                        <label for="usuario" class="col-sm-3 control-label">Usuario</label>
 	                        <div class="col-sm-8">
-	                            <input type="text" class="form-control" id="codigo" name="codigo" required>
+	                            <input type="text" class="form-control" id="usuario" name="usuario" required>
 	                        </div>
 	                    </div>
 
@@ -40,12 +40,12 @@
 
 
 	                    <div class="form-group">
-	                        <label for="estado" class="col-sm-3 control-label">Estado</label>
+	                        <label for="perfil" class="col-sm-3 control-label">Perfil</label>
 	                        <div class="col-sm-8">
-	                            <select class="form-control" id="estado" name="estado" required>
+	                            <select class="form-control" id="perfil" name="perfil" required>
 	                                <option value="">-- Selecciona estado --</option>
-	                                <option value="1" selected>Activo</option>
-	                                <option value="0">Inactivo</option>
+	                                <option value="1" selected>User</option>
+	                                <option value="2">Administrador</option>
 	                            </select>
 	                        </div>
 	                    </div>

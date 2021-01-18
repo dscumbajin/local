@@ -32,7 +32,16 @@
 						<?php } ?>
 						<li><a href="presupuestos.php"><span class=" nuevo activarbarra " id="presupuesto">Presupuestos</span> </a></li>
 
-						<li><a href="#"><?php echo $_SESSION['user_nivel']; ?></a></li>
+						<li><a href="#"><?php 
+						 if ($_SESSION['user_nivel'] == 2) {
+
+            
+							echo $_SESSION['user_usuario'] .' : ' . '<span class="badge badge-success">Administrador</span>';
+						  } else {
+							echo $_SESSION['user_usuario'] .' : ' . '<span class="badge badge-primary">User</span>';
+						  }
+						
+						 ?></a></li>
 
 						<li class="desaparecer"><a class="linea"><span>|</span></a></li>
 						<li><a href="#"><?php echo $_SESSION['user_email']; ?> <i style="margin-left:5px;" class="glyphicon glyphicon-user"></i></a></li>

@@ -3,6 +3,9 @@ include('../is_logged.php'); //Archivo verifica que el usario que intenta accede
 /*Inicia validacion del lado del servidor*/
 if (empty($_POST['nombre'])) {
 	$errors[] = "Nombre vacío";
+}
+elseif (empty($_POST['nombre'])) {
+	$errors[] = "Nombre vacío";
 } else if (!empty($_POST['nombre'])) {
 	/* Connect To Database*/
 	require_once("../../config/db.php"); //Contiene las variables de configuracion para conectar a la base de datos
@@ -10,14 +13,15 @@ if (empty($_POST['nombre'])) {
 	// escaping, additionally removing everything that could be (html/javascript-) code
 
 
-	$codigo = mysqli_real_escape_string($con, (strip_tags($_POST["codigo"], ENT_QUOTES)));
+	$usuario = mysqli_real_escape_string($con, (strip_tags($_POST["usuario"], ENT_QUOTES)));
 	$nombre = mysqli_real_escape_string($con, (strip_tags($_POST["nombre"], ENT_QUOTES)));
 	$email = mysqli_real_escape_string($con, (strip_tags($_POST["email"], ENT_QUOTES)));
-	$estado = intval($_POST['estado']);
-	$sql = "INSERT INTO clientes (codigoCliente , nombreCliente , mailCliente , estadoCliente ) VALUES ('$codigo','$nombre','$email','$estado')";
+	$perfil = intval($_POST['perfil']);
+
+	$sql = "INSERT INTO admins (usuario , nombreUsu , mail , idPerfil ) VALUES ('$usuario','$nombre','$email','$perfil')";
 	$query_new_insert = mysqli_query($con, $sql);
 	if ($query_new_insert) {
-		$messages[] = "Cliente ha sido ingresado satisfactoriamente.";
+		$messages[] = "Usuario ha sido ingresado satisfactoriamente.";
 	} else {
 		$errors[] = "Lo siento algo ha salido mal intenta nuevamente." . mysqli_error($con);
 	}

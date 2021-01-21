@@ -117,12 +117,18 @@ if ($action == 'ajax') {
 						<td><?php echo $anio_presupuesto; ?></td>
 						<td><?php echo $fecha_presupuesto; ?></td>
 						<td><?php echo $vendedor_presupuesto; ?></td>
-						<td><?php echo $status; ?></td>
+						<td><?php 
+						if ($status = 1){
+							echo 'Activo';
+						}else{
+							echo 'Inactivo';
+						}  
+						; ?></td>
 						<td><?php echo $cantidad_mes_presupuesto; ?></td>
 						<td><?php echo $cantidad_promos_presupuesto; ?></td>
 						<td><?php echo $cantidad_garantia_presupuesto; ?></td>
 						<td><?php echo $cantidad_total_presupuesto; ?></td>
-						<td><?php echo $presupuesto_mes; ?></td>
+						<td><i class="fas fa-dollar-sign"></i><?php echo $presupuesto_mes; ?></td>
 						<td><?php echo $linea_presupuesto; ?></td>
 						<td><?php echo $segmento_presupuesto; ?></td>
 

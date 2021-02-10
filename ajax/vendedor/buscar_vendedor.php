@@ -31,14 +31,14 @@ if ($action == 'ajax') {
 	// escaping, additionally removing everything that could be (html/javascript-) code
 	// idUsu, usuario, nombreUsu, password, mail, idPerfil
 	$q = mysqli_real_escape_string($con, (strip_tags($_REQUEST['q'], ENT_QUOTES)));
-	$aColumns = array('anio','mes','nomVen','nomLinea'); //Columnas de busqueda
-	$sTable = "presupuesto_mes, presupuesto_anio, vendedor, listalinea, segmento";
-	$sWhere = " WHERE presupuesto_anio.idPresAnio = presupuesto_mes.idPresAnio AND 
-	presupuesto_anio.codVen = vendedor.codVen AND presupuesto_anio.codLinea = listalinea.codLinea
+	$aColumns = array('anio','nomVen','nomLinea'); //Columnas de busqueda
+	$sTable = "historial_ventas, vendedor, listalinea";
+	$sWhere = " WHERE historial_ventas.idHisVen = presupuesto_mes.idHisVen AND 
+	historial_ventas.codVen = vendedor.codVen AND historial_ventas.codLinea = listalinea.codLinea
 	AND vendedor.codSeg = segmento.codSeg";
 	if ($_GET['q'] != "") {
-		$sWhere = "WHERE presupuesto_anio.idPresAnio = presupuesto_mes.idPresAnio AND 
-		presupuesto_anio.codVen = vendedor.codVen AND presupuesto_anio.codLinea = listalinea.codLinea
+		$sWhere = "WHERE historial_ventas.idHisVen = presupuesto_mes.idHisVen AND 
+		historial_ventas.codVen = vendedor.codVen AND historial_ventas.codLinea = listalinea.codLinea
 		AND vendedor.codSeg = segmento.codSeg AND (";
 		for ($i = 0; $i < count($aColumns); $i++) {
 			$sWhere .= $aColumns[$i] . " LIKE '%" . $q . "%' OR ";

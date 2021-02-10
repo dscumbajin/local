@@ -29,10 +29,10 @@ if (isset($_GET['id'])) {
 
 if ($action == 'ajax') {
 	// escaping, additionally removing everything that could be (html/javascript-) code
-	// idUsu, usuario, nombreUsu, password, mail, idPerfil
+	// idUsu, usuario, nombreUsu, password, mail, idestado
 	$q = mysqli_real_escape_string($con, (strip_tags($_REQUEST['q'], ENT_QUOTES)));
-	$aColumns = array('usuario', 'nombreUsu'); //Columnas de busqueda
-	$sTable = "admins";
+	$aColumns = array('nom_user', 'nick', 'mail_user'); //Columnas de busqueda
+	$sTable = "usuario";
 	$sWhere = "";
 	if ($_GET['q'] != "") {
 		$sWhere = "WHERE (";
@@ -42,7 +42,7 @@ if ($action == 'ajax') {
 		$sWhere = substr_replace($sWhere, "", -3);
 		$sWhere .= ')';
 	}
-	$sWhere .= " order by usuario";
+	$sWhere .= " order by nom_user";
 	include '../pagination.php'; //include pagination file
 	//pagination variables
 	$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page'])) ? $_REQUEST['page'] : 1;
@@ -66,8 +66,8 @@ if ($action == 'ajax') {
 			<table id="registrosTable" class="table ">
 				<tr class="info">
 
-					<th>Usuario</th>
 					<th>Nombre</th>
+					<th>Usuario</th>
 					<th>Email</th>
 					<th>Estado</th>
 					<th>Acciones</th>
@@ -76,28 +76,28 @@ if ($action == 'ajax') {
 				<?php
 				while ($row = mysqli_fetch_array($query)) {
 					// idUsu, usuario, nombreUsu, password, mail, idPerfil
-					$id_usuario = $row['idUsu'];
-					$usuario_usuario = $row['usuario'];
-					$nombre_usuario = $row['nombreUsu'];
-					$email_usuario = $row['mail'];
-					$perfil_usuario = $row['idPerfil'];
-					if ($perfil_usuario == 1) {
-						$perfil = "User";
+					$id_usuario = $row['id_usuario'];
+					$usuario_usuario = $row['nick'];
+					$nombre_usuario = $row['nom_user'];
+					$email_usuario = $row['mail_user'];
+					$estado_usuario = $row['est_user'];
+					if ($estado_usuario == 1) {
+						$estado = "Activo";
 					} else {
-						$perfil = "Administrador";
+						$estado = "Inactivo";
 					}
 				?>
 
 					<input type="hidden" value="<?php echo $usuario_usuario; ?>" id="usuario_usuario<?php echo $id_usuario; ?>">
 					<input type="hidden" value="<?php echo $nombre_usuario; ?>" id="nombre_usuario<?php echo $id_usuario; ?>">
 					<input type="hidden" value="<?php echo $email_usuario; ?>" id="email_usuario<?php echo $id_usuario; ?>">
-					<input type="hidden" value="<?php echo $perfil_usuario; ?>" id="perfil_usuario<?php echo $id_usuario; ?>">
+					<input type="hidden" value="<?php echo $estado_usuario; ?>" id="estado_usuario<?php echo $id_usuario; ?>">
 
 					<tr>
-						<td><?php echo $usuario_usuario; ?></td>
 						<td><?php echo $nombre_usuario; ?></td>
+						<td><?php echo $usuario_usuario; ?></td>
 						<td><?php echo $email_usuario; ?></td>
-						<td><?php echo $perfil; ?></td>
+						<td><?php echo $estado; ?></td>
 						<td><span>
 								<a href="#" title='Editar usuario' onclick="obtener_datos('<?php echo $id_usuario; ?>');" data-toggle="modal" data-target="#modUsuario"><i class="glyphicon glyphicon-edit"></i></a>
 								<a href="#" title='Borrar usuario' onclick="eliminar('<?php echo $id_usuario; ?>')"><i class="glyphicon glyphicon-trash" style="color: red;"></i> </a>
@@ -130,16 +130,3 @@ if ($action == 'ajax') {
 	}
 }
 ?>
-<script>
-	function crearCookie(nombre, valor, dias) {
-		var expira;
-		if (dias) {
-			var date = new Date();
-			date.setTime(date.getTime() + (dias * 24 * 60 * 60 * 1000));
-			expira = "; expires=" + date.toGMTString();
-		} else {
-			expira = "";
-		}
-		document.cookie = escape(nombre) + "=" + escape(valor) + expira + "; path=/";
-	}
-</script>

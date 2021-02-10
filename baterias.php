@@ -12,7 +12,7 @@
 	
 	$active_clientes="active";
 
-	$title="Usuarios | Baterias Ecuador";
+	$title="Vendedor | Baterias Ecuador";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,18 +31,26 @@
     <div class="container">
         <div class="panel panel-info">
             <div class="panel-heading">
-         
-                <h4><i class='glyphicon glyphicon-search'></i> Buscar presupuesto-mes</h4>
+                <div class="btn-group pull-right">
+                    <button type='button' class="btn btn-info" data-toggle="modal" data-target="#nuevoUsuario"><span
+                            class="glyphicon glyphicon-plus"></span> Nuevo Vendedor</button>
+                </div>
+                <h4><i class='glyphicon glyphicon-search'></i> Buscar Vendedor</h4>
             </div>
             <div class="panel-body">
 
 
+
+                <?php
+				include("modal/usuario/registro_usuarios.php");
+				include("modal/usuario/editar_usuarios.php");
+			?>
                 <form class="form-horizontal" role="form" id="datos_cotizacion">
 
                     <div class="form-group row">
-                        <label for="q" class="col-md-2 control-label">Presupuesto Mes</label>
+                        <label for="q" class="col-md-2 control-label">Vendedor</label>
                         <div class="col-md-5">
-                            <input type="text" class="form-control" id="q" placeholder="Año - mes - vendedor - linea"
+                            <input type="text" class="form-control" id="q" placeholder="Nombre vendedor"
                                 onkeyup='load(1);'>
                         </div>
                         <div class="col-md-3">
@@ -74,7 +82,9 @@
 		$('#facturacion').removeClass('activarnav');
 	}
     </script>
-    <script type="text/javascript" src="js/presupuesto/presupuesto-mes.js"></script>
+    <script type="text/javascript" src="js/vendedor/vendedores.js"></script>
+<!--     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
 </body>
 
 </html>
